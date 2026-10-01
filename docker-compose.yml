@@ -1,0 +1,23 @@
+name: whatsapp-archive-connector
+
+services:
+  connector:
+    build: .
+    restart: unless-stopped
+    init: true
+    environment:
+      MAX_MEDIA_MB: ${MAX_MEDIA_MB:-100}
+      DOWNLOAD_MEDIA: ${DOWNLOAD_MEDIA:-true}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    volumes:
+      - ./data/auth:/app/data/auth
+      - ./data/archive:/app/data/archive
+    read_only: true
+    tmpfs:
+      - /tmp:mode=700
+    healthcheck:
+      test: ["CMD", "node", "dist/cli.js", "health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3

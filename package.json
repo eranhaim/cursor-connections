@@ -1,0 +1,30 @@
+{
+  "name": "whatsapp-personal-archive-connector",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "cli": "node dist/cli.js",
+    "check": "npm run build",
+    "test": "node --test dist/archive.test.js"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "7.0.0-rc14",
+    "better-sqlite3": "^12.6.2",
+    "dotenv": "^16.6.1",
+    "pino": "^9.9.4",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.17.0",
+    "@types/qrcode-terminal": "^0.12.2",
+    "typescript": "^5.9.2"
+  }
+}
