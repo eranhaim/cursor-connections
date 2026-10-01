@@ -12,6 +12,8 @@ At implementation time, its npm package was published on 2026-07-29, the officia
 
 `whatsapp-web.js` is also maintained (its `1.34.7` release was published 2026-04-24), but it depends on Puppeteer/Chromium. That adds browser dependencies, sandbox flags, and a frequent Docker failure surface without improving this archive use case. Baileys is therefore the more reliable headless VPS choice, though it is an unofficial WhatsApp Web protocol library and can break when WhatsApp changes the protocol.
 
+The connector identifies as Ubuntu Chrome in the WhatsApp protocol. This is not Chromium: Baileys remains a direct WebSocket client. The current Baileys Desktop fingerprint is rejected by WhatsApp with status 428 before QR pairing, while the Chrome fingerprint receives both QR and full-history sync.
+
 ## Critical history limitation
 
 This cannot guarantee recovery of all past WhatsApp history or media. WhatsApp decides what a newly linked multi-device client receives. The available range varies by account, chat, retention, device state, and media availability. The archive's `coverage` command reports what actually arrived. A message can arrive while its old media has expired or cannot be re-uploaded; that record is retained with media status `unavailable`.

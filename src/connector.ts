@@ -91,7 +91,9 @@ export class Connector {
         creds: state.creds,
         keys: makeCacheableSignalKeyStore(state.keys, this.quietLogger)
       },
-      browser: Browsers.macOS('Desktop'),
+      // WhatsApp currently rejects the legacy Desktop fingerprint before QR
+      // pairing with status 428; Chrome still receives full-history sync.
+      browser: Browsers.ubuntu('Chrome'),
       syncFullHistory: true,
       markOnlineOnConnect: false,
       version,
